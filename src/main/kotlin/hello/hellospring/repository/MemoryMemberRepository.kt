@@ -1,7 +1,6 @@
 package hello.hellospring.repository
 
 import hello.hellospring.domain.Member
-import org.springframework.stereotype.Repository
 
 class MemoryMemberRepository: MemberRepository{
     companion object{
