@@ -46,7 +46,7 @@ class JdbcMemberRepository(private val dataSource: DataSource): MemberRepository
             pstmt.setLong(1, id)
             rs = pstmt.executeQuery()
             if (rs.next()) {
-                Member(rs.getString("name"), rs.getLong("id"))
+                Member(rs.getLong("id"), rs.getString("name"))
             } else {
                 null
             }
@@ -67,7 +67,7 @@ class JdbcMemberRepository(private val dataSource: DataSource): MemberRepository
             pstmt.setString(1, name)
             rs = pstmt.executeQuery()
             if (rs.next()) {
-                Member(rs.getString("name"), rs.getLong("id"))
+                Member(rs.getLong("id"), rs.getString("name"))
             }else{
                 null
             }
@@ -88,7 +88,7 @@ class JdbcMemberRepository(private val dataSource: DataSource): MemberRepository
             rs = pstmt.executeQuery()
             val members = mutableListOf<Member>()
             while (rs.next()) {
-                members.add(Member(rs.getString("name"), rs.getLong("id")))
+                members.add(Member(rs.getLong("id"), rs.getString("name")))
             }
             members
         } catch (e: java.lang.Exception) {

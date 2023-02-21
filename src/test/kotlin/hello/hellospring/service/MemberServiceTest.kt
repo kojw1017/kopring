@@ -12,17 +12,17 @@ class MemberServiceTest {
     private val memberService = MemberService(MemoryMemberRepository())
     @Test
     fun join() {
-        val member = Member("spring")
+        val member = Member(name = "spring")
         val saveId = memberService.join(member)
-        val findOne = memberService.findOne(saveId)
+        val findOne = saveId?.let { memberService.findOne(it) }
         Assertions.assertEquals(member.name, findOne?.name)
     }
 
     @Test
     fun 중복_회원_예외(){
-        val member = Member("spring")
+        val member = Member(name = "spring")
         memberService.join(member)
-        assertThrows<IllegalStateException>("엥?") { memberService.join(member) }
+        assertThrows<IllegalStateException>("중복된 이름") { memberService.join(member) }
     }
 
     @Test

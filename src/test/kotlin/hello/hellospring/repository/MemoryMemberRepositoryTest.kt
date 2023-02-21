@@ -15,20 +15,20 @@ class MemoryMemberRepositoryTest {
 
     @Test
     fun save(){
-        val member = Member("spring")
+        val member = Member(name = "spring")
         repository.save(member)
-        val result = repository.findById(member.id)
+        val result = member.id?.let { repository.findById(it) }
         Assertions.assertEquals(member, result)
     }
 
     @Test
     fun findByName(){
-        val member = Member("spring1")
+        val member = Member(name = "spring")
         repository.save(member)
 
-        val member2 = Member("spring1")
+        val member2 = Member(name = "spring")
         repository.save(member2)
-        val result = repository.findByName("spring1")
+        val result = repository.findByName("spring")
         Assertions.assertEquals(result, member)
     }
 }

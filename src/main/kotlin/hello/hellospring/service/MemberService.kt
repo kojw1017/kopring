@@ -4,9 +4,10 @@ import hello.hellospring.domain.Member
 import hello.hellospring.repository.MemberRepository
 import java.lang.IllegalStateException
 
+@org.springframework.transaction.annotation.Transactional
 class MemberService(private val memberRepository:MemberRepository) {
     //회원 가입
-    fun join(member: Member): Long{
+    fun join(member: Member): Long?{
         //중복 제거
         valiName(member)
         return member.id

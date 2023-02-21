@@ -14,7 +14,7 @@ class MemberController(private val memberService: MemberService) {
 
     @PostMapping("/members/new")
     fun create(form: MemberForm): String{
-        val member = Member(form.name)
+        val member = Member(name = form.name)
         memberService.join(member)
         return "redirect:/"
     }
